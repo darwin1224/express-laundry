@@ -13,9 +13,11 @@
       "protocol": "inspector",
       "restart": true,
       "sourceMaps": true,
+      "smartStep": true,
       "sourceMapPathOverrides": {
         "/var/www/html/*": "${workspaceRoot}/*"
-      }
+      },
+      "skipFiles": ["<node_internals>/**"]
     }
   ]
 }
