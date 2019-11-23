@@ -33,7 +33,9 @@ export class TransactionService {
    * @returns {Promise<TransactionModel>}
    */
   public getTransactionById(id: number): Promise<TransactionModel> {
-    return this.transaction.findOneOrFail(id);
+    return this.transaction.findOneOrFail(id, {
+      relations: ['product_id', 'customer_id'],
+    });
   }
 
   /**
