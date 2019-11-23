@@ -6,15 +6,19 @@ import { TransactionService } from '@/modules/transaction/services/TransactionSe
 import {
   Authorized,
   Body,
+  BodyParam,
   Get,
   JsonController,
+  Param,
   Post,
+  Put,
   UseBefore,
   UseInterceptor,
 } from 'routing-controllers';
 
 @JsonController('/transaction')
 @UseBefore(Authenticate)
+@Authorized('admin')
 export class TransactionController {
   /**
    * Constructor
@@ -30,7 +34,6 @@ export class TransactionController {
    * @returns {Promise<TransactionModel[]>}
    */
   @Get()
-  @Authorized('admin')
   @UseInterceptor(TransactionResource)
   public async index(): Promise<TransactionModel[]> {
     try {
@@ -47,7 +50,6 @@ export class TransactionController {
    * @returns {Promise<TransactionModel>}
    */
   @Post()
-  @Authorized('admin')
   public async store(@Body() transaction: TransactionModel): Promise<TransactionModel> {
     try {
       return await this.transaction.insertTransaction(transaction);
