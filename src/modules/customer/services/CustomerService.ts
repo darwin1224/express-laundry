@@ -1,7 +1,7 @@
-import { Service } from 'typedi';
-import { InjectRepository } from 'typeorm-typedi-extensions';
 import { CustomerModel } from '@/modules/customer/models/CustomerModel';
+import { Service } from 'typedi';
 import { Repository } from 'typeorm';
+import { InjectRepository } from 'typeorm-typedi-extensions';
 
 @Service()
 export class CustomerService {

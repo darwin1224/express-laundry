@@ -1,17 +1,17 @@
 import { BadRequestException } from '@/exceptions/BadRequestException';
+import { Authenticate } from '@/middlewares/Authenticate';
 import { CustomerModel } from '@/modules/customer/models/CustomerModel';
+import { CustomerResource } from '@/modules/customer/resources/CustomerResource';
 import { CustomerService } from '@/modules/customer/services/CustomerService';
 import {
+  Authorized,
+  Body,
   Get,
   JsonController,
-  UseInterceptor,
-  Body,
   Post,
   UseBefore,
-  Authorized,
+  UseInterceptor,
 } from 'routing-controllers';
-import { CustomerResource } from '@/modules/customer/resources/CustomerResource';
-import { Authenticate } from '@/middlewares/Authenticate';
 
 @JsonController('/customer')
 @UseBefore(Authenticate)
