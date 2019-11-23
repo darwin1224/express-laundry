@@ -1,6 +1,6 @@
 import { TransactionModel } from '@/modules/transaction/models/TransactionModel';
 import { Service } from 'typedi';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { InjectRepository } from 'typeorm-typedi-extensions';
 
 @Service()
@@ -46,5 +46,19 @@ export class TransactionService {
    */
   public insertTransaction(params: TransactionModel): Promise<TransactionModel> {
     return this.transaction.save(params);
+  }
+
+  /**
+   * Update transaction status by id
+   *
+   * @param {number} id
+   * @param {string} transaction_status
+   * @returns {Promise<UpdateResult>}
+   */
+  public updateStatusTransactionById(
+    id: number,
+    transaction_status: string,
+  ): Promise<UpdateResult> {
+    return this.transaction.update(id, { transaction_status });
   }
 }

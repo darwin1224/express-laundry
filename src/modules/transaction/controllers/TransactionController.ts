@@ -55,4 +55,25 @@ export class TransactionController {
       throw new BadRequestException(err.message);
     }
   }
+
+  /**
+   * Update status transaction
+   *
+   * @param {number} id
+   * @param {string} transactionStatus
+   * @returns {Promise<TransactionModel>}
+   */
+  @Put('/:id/status')
+  public async updateStatusTransaction(
+    @Param('id') id: number,
+    @BodyParam('transaction_status') transactionStatus: string,
+  ): Promise<TransactionModel> {
+    try {
+      const data = await this.transaction.getTransactionById(id);
+      await this.transaction.updateStatusTransactionById(id, transactionStatus);
+      return data;
+    } catch (err) {
+      throw new BadRequestException(err.message);
+    }
+  }
 }
