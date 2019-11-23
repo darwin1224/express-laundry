@@ -71,7 +71,7 @@ class App {
    * @returns {void}
    */
   private setUpMorgan(): void {
-    this.app.use(morgan('dev'));
+    this.app.use(morgan('combined'));
   }
 }
 
